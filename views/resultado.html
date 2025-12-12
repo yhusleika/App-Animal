@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Animal Favorito</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- css-->
+    <style>
+        body {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        .animal-card {
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border: none;
+            overflow: hidden;
+            background: white;
+        }
+        .animal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2.5rem;
+            text-align: center;
+        }
+        .animal-content {
+            padding: 3rem;
+        }
+        .nombre-animal {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #6f42c1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+        .emoji {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+        }
+        .btn-back {
+            background-color: #6f42c1;
+            border-color: #6f42c1;
+            padding: 12px 40px;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+        }
+        .btn-back:hover {
+            background-color: #5a32a3;
+            border-color: #5a32a3;
+        }
+        .animal-fact {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-left: 5px solid #6f42c1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="animal-card">
+                    <div class="animal-header">
+                        <h1 class="display-5">🎉 ¡Excelente Elección! 🎉</h1>
+                        <p class="lead mb-0">Has seleccionado un animal increíble</p>
+                    </div>
+                    
+                    <div class="animal-content text-center">
+                        <div class="emoji" id="icono-animal">🐾</div>
+                        <div class="nombre-animal" id="nombre-animal">Cargando...</div>
+                        
+                        <div class="animal-fact text-start">
+                            <h5 class="text-primary">💡 Datos interesantes:</h5>
+                            <p id="animal-fact" class="mb-0">
+                                Cada animal tiene características únicas que lo hacen especial.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-5">
+                            <a href="/" class="btn btn-back btn-lg">
+                                ← Elegir Otro Animal
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4 text-white">
+                    <p>Comparte tu animal favorito 🦁🐘🦅🐋</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Obtener el parámetro de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const animal = urlParams.get('animal') || 'Animal Desconocido';
+        
+        // Mostrar el nombre del animal
+        document.getElementById('nombre-animal').textContent = animal;
+        
+        // Selecciona un icono basado en el animal
+        function iconoAnimal(animalName) {
+            const emojiMap = {
+                'león': '🦁', 'leon': '🦁',
+                'tigre': '🐯', 
+                'elefante': '🐘',
+                'águila': '🦅', 'aguila': '🦅',
+                'delfín': '🐬', 'delfin': '🐬',
+                'ballena': '🐋',
+                'tortuga': '🐢',
+                'colibrí': '🐦', 'colibri': '🐦',
+                'oso': '🐻',
+                'perro': '🐕',
+                'gato': '🐈',
+                'caballo': '🐎',
+                'pájaro': '🐦', 'pajaro': '🐦'
+            };
+            
+            const lowerAnimal = animalName.toLowerCase();
+            for (const [key, emoji] of Object.entries(emojiMap)) {
+                if (lowerAnimal.includes(key)) {
+                    return emoji;
+                }
+            }
+            // icono por defecto
+            return '🐾'; 
+        }
+        
+        // Actualizar icono
+        document.getElementById('icono-animal').textContent = iconoAnimal(animal);
+        
+        // Agregar un dato curioso basado en el animal
+        function getAnimalFact(animalName) {
+            const facts = {
+                'león': 'Los leones pueden dormir hasta 20 horas al día.',
+                'tigre': 'Las rayas de cada tigre son únicas, como huellas dactilares.',
+                'elefante': 'Los elefantes pueden reconocerse a sí mismos en un espejo.',
+                'águila': 'Las águilas pueden ver a una presa a 3 km de distancia.',
+                'delfín': 'Los delfines tienen nombres únicos entre sí.',
+                'ballena': 'El canto de la ballena azul es el sonido más fuerte del reino animal.',
+                'tortuga': 'Las tortugas existen desde la época de los dinosaurios.',
+                'colibrí': 'Los colibríes son los únicos pájaros que pueden volar hacia atrás.',
+                'oso': 'Los osos pueden correr tan rápido como un caballo.',
+                'perro': 'Los perros tienen un sentido del olfato 40 veces más agudo que los humanos.',
+                'gato': 'Los gatos tienen 32 músculos en cada oreja para moverlas independientemente.',
+                'caballo': 'Los caballos pueden dormir tanto de pie como acostados.',
+                'pájaro': 'Algunas especies de pájaros pueden imitar sonidos humanos.'
+            };
+            
+            const lowerAnimal = animalName.toLowerCase();
+            for (const [key, fact] of Object.entries(facts)) {
+                if (lowerAnimal.includes(key)) {
+                    return fact;
+                }
+            }
+            // Frase generica si no se encuentra el animal
+            return `El ${animalName} es un animal fascinante con características únicas que lo hacen especial en la naturaleza.`;
+        }
+        
+        // Actualizar dato curioso
+        document.getElementById('animal-fact').textContent = getAnimalFact(animal);
+    </script>
+</body>
+</html>
