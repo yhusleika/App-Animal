@@ -55,4 +55,4 @@ Se agradece la asistencia de las siguientes herramientas de Inteligencia Artific
 
 Ibaba code Pro desarrollada por CARLOS RAMON BERBECI LUCENA.
 
-deespeck (Creada por: Liang Wenfeng)
+Deepseek (Creada por: Liang Wenfeng)
